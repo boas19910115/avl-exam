@@ -22,8 +22,8 @@ const ShopTimePageContainer = () => {
           return false
         } else {
           if (
-            currentTime.getMilliseconds() >= +start &&
-            currentTime.getMilliseconds() <= +end
+            currentTime.getTime() >= +start &&
+            currentTime.getTime() <= +end
           ) {
             return true
           } else {

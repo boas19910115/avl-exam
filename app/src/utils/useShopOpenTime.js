@@ -27,8 +27,8 @@ const useShopOpenTime = () => {
             ...pre,
             [cur]: {
               isClose,
-              start: new Date().setHours(+start[0], +start[1]),
-              end: new Date().setHours(+end[0], +end[1]),
+              start: new Date().setHours(+start[0], +start[1] || 0),
+              end: new Date().setHours(+end[0], +end[1] || 0),
             },
           }
         }, {})
