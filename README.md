@@ -4,6 +4,9 @@ Avl-exam is an app build by firebase as a DEMO for avl exam.
 
 ## Main Techs
 - Firebase Services
+ - firestore
+ - fireauth
+ - firehosting
 ### Front-End
 - React
 - Redux
