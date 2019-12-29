@@ -1,0 +1,21 @@
+@import "style/variable.scss";
+div.UserPageContainer {
+  @include flex-fill-up;
+
+  > div {
+    background-color: bisque;
+    width: 30em;
+    display: inline-flex;
+    > * {
+      text-align: left;
+      padding: 0.5em 0.5em;
+      &:first-child {
+        text-align: right;
+        text-transform: capitalize;
+        width: 10em;
+        background: rgb(117, 117, 117);
+        color: white;
+      }
+    }
+  }
+}
