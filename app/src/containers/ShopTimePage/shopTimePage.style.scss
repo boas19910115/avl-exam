@@ -3,6 +3,7 @@ div.ShopTimePageContainer {
   @include flex-fill-up;
   padding: 1em;
   box-sizing: border-box;
+  justify-content: space-evenly;
   button.SearchBar {
     @include flex-fill-up;
     outline: none;

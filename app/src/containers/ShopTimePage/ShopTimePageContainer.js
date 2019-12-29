@@ -41,7 +41,7 @@ const ShopTimePageContainer = () => {
       {shopOpenTime ? (
         <ShopTimePageList {...{ shopOpenTime: filteredShopTime, isOpen }} />
       ) : (
-        'LOADING...'
+        'LOADING FROM FIRESTORE...'
       )}
     </div>
   )
