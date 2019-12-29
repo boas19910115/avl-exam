@@ -3,27 +3,26 @@ import useShopOpenTime from 'utils/useShopOpenTime'
 import { useSelector } from 'react-redux'
 import ShopTimePageList from 'containers/ShopTimePage/ShopTimePageList'
 import SearchBar from 'containers/ShopTimePage/SearchBar'
-
-const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+import { dayList } from 'containers/ShopTimePage/shopTimePage.helper'
 
 const ShopTimePageContainer = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   useShopOpenTime()
   const { shopOpenTime } = useSelector(state => state)
 
   const currentTime = new Date()
-  const day = dayList[currentTime.getDay()]
+  const currentDay = dayList[currentTime.getDay()]
 
   const filteredShopTime = useMemo(() => {
-    if (isOpen) {
+    if (isOpen && shopOpenTime) {
       return shopOpenTime.filter(st => {
-        const { isClose, start, end } = st[day]
+        const { isClose, start, end } = st[currentDay]
         if (isClose) {
           return false
         } else {
           if (
-            currentTime.getMilliseconds() >= +start &&
-            currentTime.getMilliseconds() <= +end
+            currentTime.getTime() >= +start &&
+            currentTime.getTime() <= +end
           ) {
             return true
           } else {
@@ -34,15 +33,15 @@ const ShopTimePageContainer = () => {
     } else {
       return shopOpenTime
     }
-  }, [shopOpenTime, isOpen, currentTime, day])
+  }, [shopOpenTime, isOpen, currentTime, currentDay])
 
   return (
     <div className='ShopTimePageContainer'>
-      <SearchBar {...{ isOpen, setIsOpen }} />
+      <SearchBar {...{ isOpen, setIsOpen, disabled: !shopOpenTime }} />
       {shopOpenTime ? (
         <ShopTimePageList {...{ shopOpenTime: filteredShopTime, isOpen }} />
       ) : (
-        'LOADING...'
+        'LOADING FROM FIRESTORE...'
       )}
     </div>
   )

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 const UserPageContainer = () => {
   const { user } = useSelector(state => state)
-  console.log(user)
   const { isData, photoURL, ...restInfo } = useMemo(() => {
     try {
       const {

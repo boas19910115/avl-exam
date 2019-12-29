@@ -1,21 +1,30 @@
 import React, { useCallback, useState } from 'react'
+import CurrentTime from 'containers/ShopTimePage/CurrentTime'
 
-const SearchBar = ({ isOpen, setIsOpen }) => {
-  const [text, setText] = useState(isOpen ? 'OPEN NOW' : 'ALL')
+const textTypes = {
+  OPEN: 'OPEN NOW',
+  ALL: 'ALL',
+}
+
+const SearchBar = ({ isOpen, setIsOpen, disabled }) => {
+  const [text, setText] = useState(isOpen ? textTypes.OPEN : textTypes.ALL)
   const handleOnClick = useCallback(() => {
     if (isOpen) {
       setIsOpen(false)
-      setText('ALL')
+      setText(textTypes.ALL)
     } else {
       setIsOpen(true)
-      setText('OPEN NOW')
+      setText(textTypes.OPEN)
     }
   }, [isOpen, setIsOpen])
 
   return (
-    <button className='SearchBar' onClick={handleOnClick}>
-      {text}
-    </button>
+    <div className='SearchBarContainer'>
+      <CurrentTime />
+      <button disabled={disabled} className='SearchBar' onClick={handleOnClick}>
+        {text}
+      </button>
+    </div>
   )
 }
 
