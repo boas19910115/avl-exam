@@ -42,5 +42,6 @@ div#APP {
   @include flex-fill-up;
   font-size: 2vw;
   width: 100%;
-  height: inherit;
+  height: fit-content;
+  min-height: 100%;
 }
