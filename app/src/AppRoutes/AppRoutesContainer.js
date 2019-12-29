@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import { LoginPage } from 'containers/LoginPage'
 import ProtectedRoute from 'components/ProtectedRoute'
+import { UserPage } from 'containers/UserPage'
 
 const AppRoutesContainer = () => {
   return (
@@ -19,7 +20,7 @@ const AppRoutesContainer = () => {
         <LoginPage />
       </Route>
       <ProtectedRoute exact path='/user-info'>
-        USER-INFO
+        <UserPage />
       </ProtectedRoute>
       <Redirect from='/' to='/home' />
     </Switch>

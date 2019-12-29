@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app'
 import { NavLink, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearUserAction } from 'reduxStore/actions'
@@ -51,7 +51,7 @@ const menuConfigs = {
         } else {
           history.push('/login')
         }
-      })
+      }, [history, isSignIn, dispatch])
       return (
         <div
           style={{ cursor: 'pointer' }}
