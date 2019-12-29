@@ -13,4 +13,11 @@ function clearUserAction() {
   }
 }
 
-export { setUserAction, clearUserAction }
+function loadShopOpenTimeAction(list) {
+  return {
+    type: actionTypes.LOAD_SHOP_OPEN_TIME,
+    data: list,
+  }
+}
+
+export { setUserAction, clearUserAction, loadShopOpenTimeAction }

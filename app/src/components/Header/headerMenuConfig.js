@@ -6,6 +6,7 @@ import { clearUserAction } from 'reduxStore/actions'
 
 const menuTypes = {
   PRODUCT: 'product',
+  SHOP_TIME: 'shop open time',
   ABOUT: 'about',
   USER_INFO: 'user information',
   LOGIN: 'login',
@@ -25,6 +26,14 @@ const menuConfigs = {
     Jsx: ({ ...rest }) => (
       <NavLink to='/product' {...rest}>
         PRODUCT
+      </NavLink>
+    ),
+  },
+  [menuTypes.SHOP_TIME]: {
+    className: 'Product',
+    Jsx: ({ ...rest }) => (
+      <NavLink to='/shop-time' {...rest}>
+        SHOP TIME
       </NavLink>
     ),
   },
@@ -68,7 +77,7 @@ const menuConfigs = {
 
 const menu1List = [
   menuConfigs[menuTypes.ABOUT],
-  menuConfigs[menuTypes.PRODUCT],
+  menuConfigs[menuTypes.SHOP_TIME],
 ].map(({ Jsx, className, ...rest }) => (
   <Jsx key={className} {...{ className, ...rest }} />
 ))

@@ -13,6 +13,7 @@ $colorShadow: rgba(0, 0, 0, 0.52);
 }
 
 div.HeaderContainer {
+  z-index: 10;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;

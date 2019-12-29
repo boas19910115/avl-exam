@@ -16,6 +16,7 @@
     "build": "cd ./app && yarn build && cp -r build/* ../public && rm -fr build  && cd ..",
     "test": "cd ./app && yarn test && cd ..",
     "eject": "cd ./app && yarn eject && cd ..",
+    "deploy": "yarn build && firebase deploy",
     "deploy:host": "yarn build && firebase deploy --only hosting"
   },
   "browserslist": {

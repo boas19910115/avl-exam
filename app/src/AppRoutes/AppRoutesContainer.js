@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import { LoginPage } from 'containers/LoginPage'
 import ProtectedRoute from 'components/ProtectedRoute'
 import { UserPage } from 'containers/UserPage'
+import { ShopTimePage } from 'containers/ShopTimePage'
 
 const AppRoutesContainer = () => {
   return (
@@ -13,12 +14,12 @@ const AppRoutesContainer = () => {
       <Route exact path='/about'>
         ABOUT
       </Route>
-      <Route exact path='/product'>
-        PRODUCT
-      </Route>
       <Route exact path='/login'>
         <LoginPage />
       </Route>
+      <ProtectedRoute exact path='/shop-time'>
+        <ShopTimePage />
+      </ProtectedRoute>
       <ProtectedRoute exact path='/user-info'>
         <UserPage />
       </ProtectedRoute>
