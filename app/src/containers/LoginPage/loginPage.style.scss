@@ -5,6 +5,7 @@ div.LoginPageContainer {
   > * {
     @include flex-fill-up;
     > button {
+      outline: none;
       padding: 0;
       color: white;
       font-weight: 900;
