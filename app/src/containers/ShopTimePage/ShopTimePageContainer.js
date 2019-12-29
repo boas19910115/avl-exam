@@ -3,8 +3,7 @@ import useShopOpenTime from 'utils/useShopOpenTime'
 import { useSelector } from 'react-redux'
 import ShopTimePageList from 'containers/ShopTimePage/ShopTimePageList'
 import SearchBar from 'containers/ShopTimePage/SearchBar'
-
-const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+import { dayList } from 'containers/ShopTimePage/shopTimePage.helper'
 
 const ShopTimePageContainer = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,12 +11,12 @@ const ShopTimePageContainer = () => {
   const { shopOpenTime } = useSelector(state => state)
 
   const currentTime = new Date()
-  const day = dayList[currentTime.getDay()]
+  const currentDay = dayList[currentTime.getDay()]
 
   const filteredShopTime = useMemo(() => {
     if (isOpen) {
       return shopOpenTime.filter(st => {
-        const { isClose, start, end } = st[day]
+        const { isClose, start, end } = st[currentDay]
         if (isClose) {
           return false
         } else {
@@ -34,7 +33,7 @@ const ShopTimePageContainer = () => {
     } else {
       return shopOpenTime
     }
-  }, [shopOpenTime, isOpen, currentTime, day])
+  }, [shopOpenTime, isOpen, currentTime, currentDay])
 
   return (
     <div className='ShopTimePageContainer'>

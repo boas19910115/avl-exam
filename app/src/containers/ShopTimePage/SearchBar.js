@@ -1,14 +1,19 @@
 import React, { useCallback, useState } from 'react'
 
+const textTypes = {
+  OPEN: 'OPEN NOW',
+  ALL: 'ALL',
+}
+
 const SearchBar = ({ isOpen, setIsOpen }) => {
-  const [text, setText] = useState(isOpen ? 'OPEN NOW' : 'ALL')
+  const [text, setText] = useState(isOpen ? textTypes.OPEN : textTypes.ALL)
   const handleOnClick = useCallback(() => {
     if (isOpen) {
       setIsOpen(false)
-      setText('ALL')
+      setText(textTypes.ALL)
     } else {
       setIsOpen(true)
-      setText('OPEN NOW')
+      setText(textTypes.OPEN)
     }
   }, [isOpen, setIsOpen])
 
