@@ -6,7 +6,7 @@ import SearchBar from 'containers/ShopTimePage/SearchBar'
 import { dayList } from 'containers/ShopTimePage/shopTimePage.helper'
 
 const ShopTimePageContainer = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   useShopOpenTime()
   const { shopOpenTime } = useSelector(state => state)
 
@@ -14,7 +14,7 @@ const ShopTimePageContainer = () => {
   const currentDay = dayList[currentTime.getDay()]
 
   const filteredShopTime = useMemo(() => {
-    if (isOpen) {
+    if (isOpen && shopOpenTime) {
       return shopOpenTime.filter(st => {
         const { isClose, start, end } = st[currentDay]
         if (isClose) {
@@ -37,7 +37,7 @@ const ShopTimePageContainer = () => {
 
   return (
     <div className='ShopTimePageContainer'>
-      <SearchBar {...{ isOpen, setIsOpen }} />
+      <SearchBar {...{ isOpen, setIsOpen, disabled: !shopOpenTime }} />
       {shopOpenTime ? (
         <ShopTimePageList {...{ shopOpenTime: filteredShopTime, isOpen }} />
       ) : (

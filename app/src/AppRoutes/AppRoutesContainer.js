@@ -23,7 +23,7 @@ const AppRoutesContainer = () => {
       <ProtectedRoute exact path='/user-info'>
         <UserPage />
       </ProtectedRoute>
-      <Redirect from='/' to='/home' />
+      <Redirect from='/' to='/shop-time' />
     </Switch>
   )
 }

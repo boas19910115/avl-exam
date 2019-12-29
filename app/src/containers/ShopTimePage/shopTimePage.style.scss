@@ -4,21 +4,28 @@ div.ShopTimePageContainer {
   padding: 1em;
   box-sizing: border-box;
   justify-content: space-evenly;
-  button.SearchBar {
+  div.SearchBarContainer {
     @include flex-fill-up;
-    outline: none;
-    transition: all 500ms;
-    cursor: pointer;
-    display: inline-flex;
-    align-self: stretch;
-    width: 100%;
+    flex-direction: row;
     max-height: 1.5em;
-    background-color: rgb(99, 203, 255);
-    border: none;
-    box-shadow: 0.1em 0.1em 0.1em black;
-    &:hover {
-      box-shadow: 0.2em 0.2em 0.2em black;
-      transform: translate(-0.1em, -0.1em);
+    div.CurrentTime {
+      @include flex-fill-up;
+    }
+
+    button.SearchBar {
+      @include flex-fill-up;
+      outline: none;
+      transition: all 500ms;
+      cursor: pointer;
+      display: inline-flex;
+      align-self: stretch;
+      background-color: rgb(99, 203, 255);
+      border: none;
+      box-shadow: 0.1em 0.1em 0.1em black;
+      &:hover {
+        box-shadow: 0.2em 0.2em 0.2em black;
+        transform: translate(-0.1em, -0.1em);
+      }
     }
   }
   table.ShopTimePageList {
