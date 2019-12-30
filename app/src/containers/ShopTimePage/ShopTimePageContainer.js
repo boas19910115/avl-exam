@@ -10,6 +10,9 @@ const ShopTimePageContainer = () => {
   const [selectedDateTime, setSelectedDateTime] = useState(new Date().getTime())
 
   useShopOpenTime()
+
+  console.log(selectedDateTime)
+
   const { shopOpenTime } = useSelector(state => state)
 
   const currentTime = new Date(selectedDateTime)
@@ -18,26 +21,29 @@ const ShopTimePageContainer = () => {
   const filteredShopTime = useMemo(() => {
     if (shopOpenTime)
       return shopOpenTime.filter(st => {
-        const currentItem = st[currentDay]
-
-        const { isClose, start, end } = currentItem
-
-        if (isClose) {
-          return false
-        } else {
-          const [selectedHour, startHour, endHour] = [
-            selectedDateTime,
-            +start,
-            +end,
-          ].map(ms => {
-            return +new Date(ms).getHours()
-          })
-
-          if (selectedHour >= startHour && selectedHour <= endHour) {
-            return true
-          } else {
+        try {
+          const currentItem = st[currentDay]
+          const { isClose, start, end } = currentItem
+          if (isClose) {
             return false
+          } else {
+            const [selectedHHmm, startHHmm, endHHmm] = [
+              selectedDateTime,
+              +start,
+              +end,
+            ].map(ms => {
+              const tempDate = new Date(ms)
+              return tempDate.getHours() * 60 + tempDate.getMinutes()
+            })
+
+            if (selectedHHmm >= startHHmm && selectedHHmm <= endHHmm) {
+              return true
+            } else {
+              return false
+            }
           }
+        } catch (error) {
+          return false
         }
       })
     else {

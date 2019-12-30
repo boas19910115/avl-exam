@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import * as luxon from 'luxon'
+import WrapperWithPropsPassThrough from 'components/wrapperPassPropsThrough'
 
 const handlerTypes = {
   DATE: 'date',
@@ -41,13 +42,14 @@ const DateTimeSearch = ({
             selectedDateObj.getMinutes(),
             selectedDateObj.getSeconds(),
           ]
+          console.log(value)
 
           setSelectedDateTime(new Date(value).setHours(...time))
           break
         }
         case handlerTypes.TIME: {
           const timeArray = value.split(':')
-          const [hour, min] = [timeArray[0], timeArray[1]]
+          const [hour, min] = [+timeArray[0], +timeArray[1]]
           setSelectedDateTime(selectedDateObj.setHours(hour, min))
           break
         }
@@ -62,13 +64,21 @@ const DateTimeSearch = ({
     <div className='DateTimeSearch'>
       <input
         disabled={disabled}
-        defaultValue={defaultDate}
+        value={defaultDate}
         type='date'
         onChange={handleOnChange(handlerTypes.DATE)}
+        {...{
+          onKeyDown(e) {
+            e.preventDefault()
+          },
+          onKeyUp(e) {
+            e.preventDefault()
+          },
+        }}
       />
       <input
         disabled={disabled}
-        defaultValue={defaultTime}
+        value={defaultTime}
         type='time'
         onChange={handleOnChange(handlerTypes.TIME)}
       />
