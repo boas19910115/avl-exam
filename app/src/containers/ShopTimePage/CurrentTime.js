@@ -12,6 +12,7 @@ const CurrentTime = () => {
 
   return (
     <div className='CurrentTime'>
+      TODAY:
       {luxon.DateTime.fromJSDate(currentDate).toFormat('ccc dd LLL HH:mm:ss')}
     </div>
   )

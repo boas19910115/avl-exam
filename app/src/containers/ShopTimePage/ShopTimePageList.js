@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react'
 import * as luxon from 'luxon'
-import { dayList } from 'containers/ShopTimePage/shopTimePage.helper'
 const headerTypes = ['Name', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const footerTypes = ['Count', ...headerTypes.slice(1)]
 
-const ShopTimePageList = ({ shopOpenTime: shopOpenTimeList }) => {
+const ShopTimePageList = ({ shopOpenTime: shopOpenTimeList, currentDay }) => {
   const TableHeader = useCallback(() => {
     return headerTypes.map(h => <th key={h}>{h}</th>)
   }, [])
@@ -30,8 +29,6 @@ const ShopTimePageList = ({ shopOpenTime: shopOpenTimeList }) => {
           return (
             <tr key={`row-${i}`}>
               {headerTypes.map((h, ii) => {
-                const currentDay = dayList[new Date().getDay()]
-
                 if (h === 'Name') {
                   return <td key={`col-${ii}-${item.Name}`}>{item.Name}</td>
                 }

@@ -7,39 +7,59 @@ import { dayList } from 'containers/ShopTimePage/shopTimePage.helper'
 
 const ShopTimePageContainer = () => {
   const [isOpen, setIsOpen] = useState(true)
+  const [selectedDateTime, setSelectedDateTime] = useState(new Date().getTime())
+
   useShopOpenTime()
   const { shopOpenTime } = useSelector(state => state)
 
-  const currentTime = new Date()
+  const currentTime = new Date(selectedDateTime)
   const currentDay = dayList[currentTime.getDay()]
 
   const filteredShopTime = useMemo(() => {
-    if (isOpen && shopOpenTime) {
+    if (shopOpenTime)
       return shopOpenTime.filter(st => {
-        const { isClose, start, end } = st[currentDay]
+        const currentItem = st[currentDay]
+
+        const { isClose, start, end } = currentItem
+
         if (isClose) {
           return false
         } else {
-          if (
-            currentTime.getTime() >= +start &&
-            currentTime.getTime() <= +end
-          ) {
+          const [selectedHour, startHour, endHour] = [
+            selectedDateTime,
+            +start,
+            +end,
+          ].map(ms => {
+            return +new Date(ms).getHours()
+          })
+
+          if (selectedHour >= startHour && selectedHour <= endHour) {
             return true
           } else {
             return false
           }
         }
       })
-    } else {
-      return shopOpenTime
+    else {
+      return null
     }
-  }, [shopOpenTime, isOpen, currentTime, currentDay])
+  }, [selectedDateTime, currentDay, shopOpenTime])
 
   return (
     <div className='ShopTimePageContainer'>
-      <SearchBar {...{ isOpen, setIsOpen, disabled: !shopOpenTime }} />
+      <SearchBar
+        {...{
+          isOpen,
+          setIsOpen,
+          disabled: !shopOpenTime,
+          selectedDateTime,
+          setSelectedDateTime,
+        }}
+      />
       {shopOpenTime ? (
-        <ShopTimePageList {...{ shopOpenTime: filteredShopTime, isOpen }} />
+        <ShopTimePageList
+          {...{ shopOpenTime: filteredShopTime, isOpen, currentDay }}
+        />
       ) : (
         'LOADING FROM FIRESTORE...'
       )}
