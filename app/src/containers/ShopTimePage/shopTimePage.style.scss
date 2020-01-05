@@ -25,6 +25,9 @@ div.ShopTimePageContainer {
     div.DateTimeSearch-dev {
       @include flex-fill-up;
       flex-direction: row;
+      > * {
+        @include flex-fill-up;
+      }
       input {
         flex-direction: row;
         border: none;
