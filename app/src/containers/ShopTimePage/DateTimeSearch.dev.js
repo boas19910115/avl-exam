@@ -22,6 +22,8 @@ const DateTimeSearchDev = ({
         onChange={handleOnChangeEvent}
         value={dateTime}
         disabled={disabled}
+        clockClassName='serachClock'
+        calendarClassName='searchCalendar'
       />
     </div>
   )
