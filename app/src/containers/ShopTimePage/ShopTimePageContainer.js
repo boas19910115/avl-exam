@@ -11,8 +11,6 @@ const ShopTimePageContainer = () => {
 
   useShopOpenTime()
 
-  console.log(selectedDateTime)
-
   const { shopOpenTime } = useSelector(state => state)
 
   const currentTime = new Date(selectedDateTime)

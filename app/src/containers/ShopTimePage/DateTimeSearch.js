@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
 import * as luxon from 'luxon'
-import WrapperWithPropsPassThrough from 'components/wrapperPassPropsThrough'
 
 const handlerTypes = {
   DATE: 'date',

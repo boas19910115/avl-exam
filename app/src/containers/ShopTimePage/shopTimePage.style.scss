@@ -22,6 +22,20 @@ div.ShopTimePageContainer {
         }
       }
     }
+    div.DateTimeSearch-dev {
+      @include flex-fill-up;
+      flex-direction: row;
+      input {
+        flex-direction: row;
+        border: none;
+        // background-color: rgb(99, 203, 255);
+        // margin-right: 1em;
+        // box-shadow: 0.1em 0.1em 0.1em black;
+        // transform: translate(-0.1em, -0.1em);
+        &:hover {
+        }
+      }
+    }
     div.CurrentTime {
       @include flex-fill-up;
     }
